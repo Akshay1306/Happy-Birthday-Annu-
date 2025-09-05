@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>✨ Your Magical Birthday Adventure ✨</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&family=Fredoka+One:wght@400&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: 'Quicksand', sans-serif;
+        background: linear-gradient(135deg, #ffb3e6, #ff9999, #ffcc99, #99e6ff, #b3e6ff);
+        background-size: 300% 300%;
+        animation: dreamyGradient 8s ease infinite;
+        min-height: 100vh;
+        overflow-x: hidden;
+        cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAANcSURBVFhHtZddaBRXFMfPzO5md3azm6/NJomJMYnGaKMVrYKKD4pQKVJ88MEHL6WUPogPRfGhD32oUHwQfBEfWqRFQbEPFrRQK1oLtVZrP2y1VrHWtOZLk2ySzWZ3d2fmnnvvzOzs7CaZhcOdO+d+/P93Zu7MvQsAAP//2Q=='), auto;
+    }
+    @keyframes dreamyGradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    .kawaii-container {
+        max-width: 900px;
+        margin: 20px auto;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 30px;
+        box-shadow: 0 20px 60px rgba(255, 192, 203, 0.4);
+        overflow: hidden;
+        position: relative;
+        border: 4px solid #ffb3d9;
+    }
+    .floating-kawaii {
+        position: fixed;
+        pointer-events: none;
+        z-index: 1000;
+        animation: floatKawaii 6s linear infinite;
+    }
+    @keyframes floatKawaii {
+        0% {
+            transform: translateY(100vh) rotate(0deg);
+            opacity: 0;
+        }
+        10% {
+            opacity: 1;
+        }
+        90% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-100px) rotate(360deg);
+            opacity: 0;
+        }
+    }
+    .header {
+        background: linear-gradient(45deg, #ff99cc, #ffb3e6, #ccb3ff);
+        padding: 40px 30px;
+        text-align: center;
+        position: relative;
+    }
+    .birthday-title {
+        font-family: 'Fredoka One', cursive;
+        font-size: 2.5rem;
+        color: #ff1493;
+        text-shadow: 2px 2px 8px rgba(255, 20, 147, 0.3);
+        margin-bottom: 10px;
+        animation: bounceTitle 2s ease-in-out infinite alternate;
+    }
+    @keyframes bounceTitle {
+        from { transform: scale(1) rotate(-1deg); }
+        to { transform: scale(1.05) rotate(1deg); }
+    }
+    .birthday-date {
+        background: #fff;
+        display: inline-block;
+        padding: 12px 25px;
+        border-radius: 25px;
+        color: #ff1493;
+        font-weight: 600;
+        font-size: 1.2rem;
+        box-shadow: 0 8px 20px rgba(255, 20, 147, 0.2);
+        border: 3px solid #ffb3d9;
+        animation: wiggle 3s ease-in-out infinite;
+    }
+    @keyframes wiggle {
+        0%, 100% { transform: rotate(0deg); }
+        25% { transform: rotate(1deg); }
+        75% { transform: rotate(-1deg); }
+    }
+    .main-content {
+        padding: 40px 30px;
+        position: relative;
+    }
+    .cute-mascot {
+        text-align: center;
+        font-size: 4rem;
+        margin: 20px 0;
+        animation: mascotBounce 2s ease-in-out infinite;
+    }
+    @keyframes mascotBounce {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+    }
+    .speech-bubble {
+        background: #fff;
+        border-radius: 25px;
+        padding: 25px;
+        margin: 20px 0;
+        position: relative;
+        box-shadow: 0 10px 30px rgba(255, 192, 203, 0.3);
+        border: 3px solid #ffccdd;
+        animation: bubblePop 0.8s ease-out;
+    }
+    @keyframes bubblePop {
+        0% { transform: scale(0.3); opacity: 0; }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); opacity: 1; }
+    }
+    .speech-bubble::before {
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 50px;
+        width: 0;
+        height: 0;
+        border: 15px solid transparent;
+        border-top: 15px solid #ffccdd;
+    }
+    .speech-bubble::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 53px;
+        width: 0;
+        height: 0;
+        border: 12px solid transparent;
+        border-top: 12px solid #fff;
+    }
+    .message-text {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        color: #ff1493;
+        text-align: center;
+        font-weight: 500;
+    }
+    .adventure-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin: 30px 0;
+    }
+    .kawaii-button {
+        background: linear-gradient(45deg, #ff99dd, #ffb3e6);
+        border: 3px solid #ff99cc;
+        border-radius: 25px;
+        padding: 20px 30px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #fff;
+        text-shadow: 1px 1px 3px rgba(255, 20, 147, 0.3);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: 'Quicksand', sans-serif;
+        position: relative;
+        overflow: hidden;
+    }
+    .kawaii-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        transition: left 0.5s ease;
+    }
+    .kawaii-button:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 15px 35px rgba(255, 153, 204, 0.4);
+        border-color: #ff66b3;
+    }
+    .kawaii-button:hover::before {
+        left: 100%;
+    }
+    .progress-hearts {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin: 30px 0;
+    }
+    .heart {
+        font-size: 2rem;
+        color: #ffb3d9;
+        animation: heartbeat 1.5s ease-in-out infinite;
+        transition: all 0.3s ease;
+    }
+    .heart.active {
+        color: #ff1493;
+        transform: scale(1.3);
+    }
+    @keyframes heartbeat {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+    }
+    .cute-animals {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin: 30px 0;
+        flex-wrap: wrap;
+    }
+    .animal {
+        font-size: 3rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        animation: animalDance 4s ease-in-out infinite;
+    }
+    .animal:hover {
+        transform: scale(1.2) rotate(15deg);
+    }
+    .animal:nth-child(1) { animation-delay: 0s; }
+    .animal:nth-child(2) { animation-delay: 0.5s; }
+    .animal:nth-child(3) { animation-delay: 1s; }
+    .animal:nth-child(4) { animation-delay: 1.5s; }
+    .animal:nth-child(5) { animation-delay: 2s; }
+    @keyframes animalDance {
+        0%, 100% { transform: rotate(0deg) translateY(0px); }
+        25% { transform: rotate(5deg) translateY(-10px); }
+        50% { transform: rotate(0deg) translateY(-5px); }
+        75% { transform: rotate(-5deg) translateY(-15px); }
+    }
+    .love-meter {
+        background: #fff;
+        border-radius: 20px;
+        padding: 20px;
+        margin: 20px 0;
+        text-align: center;
+        border: 3px solid #ffb3d9;
+        box-shadow: 0 8px 25px rgba(255, 179, 217, 0.3);
+    }
+    .meter-bar {
+        width: 100%;
+        height: 30px;
+        background: #ffeeee;
+        border-radius: 15px;
+        overflow: hidden;
+        position: relative;
+        border: 2px solid #ffb3d9;
+    }
+    .meter-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #ff99cc, #ff1493, #ff6b6b);
+        border-radius: 15px;
+        animation: fillMeter 3s ease-in-out;
+        position: relative;
+    }
+    @keyframes fillMeter {
+        from { width: 0%; }
+        to { width: 100%; }
+    }
+    .meter-fill::after {
+        content: '💖';
+        position: absolute;
+        right: -15px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.5rem;
+        animation: sparkle 2s ease-in-out infinite;
+    }
+    @keyframes sparkle {
+        0%, 100% { transform: translateY(-50%) scale(1); }
+        50% { transform: translateY(-50%) scale(1.2); }
+    }
+    .surprise-box {
+        background: linear-gradient(45deg, #ffe6f2, #fff0f5);
+        border-radius: 25px;
+        padding: 30px;
+        margin: 30px 0;
+        text-align: center;
+        border: 4px dashed #ff99cc;
+        position: relative;
+        animation: surpriseShine 3s ease-in-out infinite;
+    }
+    @keyframes surpriseShine {
+        0%, 100% { border-color: #ff99cc; }
+        50% { border-color: #ff1493; }
+    }
+    .gift-emoji {
+        font-size: 4rem;
+        margin: 20px 0;
+        animation: giftBounce 2s ease-in-out infinite;
+    }
+    @keyframes giftBounce {
+        0%, 100% { transform: rotate(0deg) scale(1); }
+        25% { transform: rotate(-5deg) scale(1.05); }
+        50% { transform: rotate(0deg) scale(1.1); }
+        75% { transform: rotate(5deg) scale(1.05); }
+    }
+    .final-message {
+        background: linear-gradient(135deg, #ff99dd, #ffb3e6, #ccb3ff);
+        background-size: 200% 200%;
+        animation: finalGlow 4s ease infinite;
+        border-radius: 25px;
+        padding: 40px;
+        text-align: center;
+        margin: 20px 0;
+        border: 4px solid #ff99cc;
+        color: #fff;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    }
+    @keyframes finalGlow {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    .hidden { display: none; }
+    /* New styles for photo wishes */
+    .photo-wishes-section {
+        text-align: center;
+        margin-top: 30px;
+    }
+    .photo-wishes-section h2 {
+        color: #ff1493;
+        font-family: 'Fredoka One', cursive;
+        margin-bottom: 20px;
+    }
+    .photo-gallery {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    .wish-photo {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 20px;
+        cursor: pointer;
+        border: 3px solid #ffb3d9;
+        box-shadow: 0 6px 15px rgba(255, 179, 217, 0.7);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .wish-photo:hover {
+        transform: scale(1.1);
+        box-shadow: 0 12px 25px rgba(255, 20, 147, 0.8);
+    }
+</style>
+</head>
+<body>
+<div class="kawaii-container">
+    <div class="header">
+        <h1 class="birthday-title">🌸 Happy Birthday Cutie! 🌸</h1>
+        <div class="birthday-date">September 6th • 2025 🎂</div>
+    </div>
+    
+    <div class="main-content" id="content">
+        <div class="cute-mascot">🐰</div>
+        
+        <div class="speech-bubble">
+            <div class="message-text">
+                Hi there, beautiful! 🌟 I'm Bunny, your special birthday guide! 
+                Today is all about YOU and celebrating how absolutely adorable and amazing you are! 
+                Are you ready for the cutest birthday adventure ever? ✨
+            </div>
+        </div>
+        
+        <div class="cute-animals">
+            <div class="animal" onclick="animalTalk('🐰', 'You\'re as sweet as honey! 🍯')">🐰</div>
+            <div class="animal" onclick="animalTalk('🐱', 'Purr-fectly wonderful! 😻')">🐱</div>
+            <div class="animal" onclick="animalTalk('🐶', 'You\'re pawsome! 🐾')">🐶</div>
+            <div class="animal" onclick="animalTalk('🐼', 'Bamboozled by your cuteness! 🎋')">🐼</div>
+            <div class="animal" onclick="animalTalk('🦄', 'Magical like a unicorn! ✨')">🦄</div>
+        </div>
+        
+        <div class="love-meter">
+            <h3 style="color: #ff1493; margin-bottom: 15px; font-family: 'Fredoka One', cursive;">
+                💕 Cuteness Level Meter 💕
+            </h3>
+            <div class="meter-bar">
+                <div class="meter-fill" style="width: 100%;"></div>
+            </div>
+            <p style="color: #ff1493; margin-top: 15px; font-weight: 600;">
+                Result: MAXIMUM ADORABLENESS! 🥰
+            </p>
+        </div>
+        
+        <div class="adventure-buttons">
+            <button class="kawaii-button" onclick="startAdventure('forest')">
+                🌸 Visit the Enchanted Flower Forest 🌸
+            </button>
+            <button class="kawaii-button" onclick="startAdventure('party')">
+                🎉 Join the Birthday Party in Candyland 🍭
+            </button>
+            <button class="kawaii-button" onclick="startAdventure('wishes')">
+                🌙 Make Wishes Under the Starry Sky ⭐
+            </button>
+            <button class="kawaii-button" onclick="startAdventure('photos')">
+                📸 View Sweet Photo Wishes 📸
+            </button>
+            <button class="kawaii-button" onclick="startAdventure('surprise')">
+                🎁 Open the Magic Birthday Surprise Box 🎁
+            </button>
+        </div>
+        
+        <div class="progress-hearts">
+            <div class="heart active">💖</div>
+            <div class="heart">💕</div>
+            <div class="heart">💗</div>
+            <div class="heart">💝</div>
+            <div class="heart">💘</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentStep = 0;
+    let adventures = [];
+
+    function createFloatingKawaii() {
+        const kawaiiElements = ['🌸', '💖', '✨', '🦋', '🌟', '💕', '🎈', '🍓', '🌈', '☁️'];
+        const element = document.createElement('div');
+        element.className = 'floating-kawaii';
+        element.innerHTML = kawaiiElements[Math.floor(Math.random() * kawaiiElements.length)];
+        element.style.left = Math.random() * 100 + '%';
+        element.style.fontSize = (Math.random() * 20 + 25) + 'px';
+        element.style.animationDuration = (Math.random() * 3 + 4) + 's';
+        document.body.appendChild(element);
+
+        setTimeout(() => element.remove(), 7000);
+    }
+
+    setInterval(createFloatingKawaii, 800);
+
+    function animalTalk(animal, message) {
+        const popup = document.createElement('div');
+        popup.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(45deg, #ff99dd, #ffb3e6);
+            color: white;
+            padding: 30px;
+            border-radius: 25px;
+            font-size: 1.3rem;
+            text-align: center;
+            z-index: 10000;
+            border: 4px solid #ff99cc;
+            box-shadow: 0 20px 60px rgba(255, 153, 204, 0.4);
+            animation: popupBounce 0.5s ease-out;
+            font-weight: 600;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        `;
+        popup.innerHTML = `${animal}<br><br>${message}`;
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes popupBounce {
+                0% { transform: translate(-50%, -50%) scale(0.3); opacity: 0; }
+                50% { transform: translate(-50%, -50%) scale(1.1); }
+                100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        document.body.appendChild(popup);
+
+        setTimeout(() => {
+            popup.remove();
+            style.remove();
+        }, 2500);
+
+        for (let i = 0; i < 10; i++) {
+            setTimeout(() => createFloatingKawaii(), i * 100);
+        }
+    }
+
+    const adventureStories = {
+        forest: {
+            title: "🌸 Enchanted Flower Forest 🌸",
+            mascot: "🦋",
+            content: `
+                <div class="speech-bubble">
+                    <div class="message-text">
+                        Welcome to the magical flower forest! 🌺 Here, every flower whispers sweet birthday wishes just for you! 
+                        <br><br>
+                        The roses say "You're beautiful inside and out!" 🌹<br>
+                        The sunflowers giggle "You brighten every day!" 🌻<br>
+                        The cherry blossoms dance "You make life beautiful!" 🌸<br>
+                        <br>
+                        A wise old owl hoots: "Someone loves you more than all the flowers in this forest!" 🦉💕
+                    </div>
+                </div>
+                <div class="cute-animals">
+                    <div class="animal" onclick="animalTalk('🦋', 'Flutter flutter! You\'re gorgeous! 💫')">🦋</div>
+                    <div class="animal" onclick="animalTalk('🐝', 'Bee-utiful birthday girl! 🍯')">🐝</div>
+                    <div class="animal" onclick="animalTalk('🦉', 'Whoo-hoo! Happy birthday! 🎉')">🦉</div>
+                </div>
+            `
+        },
+        party: {
+            title: "🎉 Candyland Birthday Party 🍭",
+            mascot: "🧁",
+            content: `
+                <div class="speech-bubble">
+                    <div class="message-text">
+                        Welcome to the sweetest birthday party ever! 🎂 Everything here is made of candy and love!
+                        <br><br>
+                        The gummy bears are dancing just for you! 🐻<br>
+                        The chocolate fountain is singing happy birthday! 🍫<br>
+                        The cotton candy clouds are raining sprinkles! ☁️✨<br>
+                        <br>
+                        Even the candy canes are spelling out "YOU'RE AMAZING!" 🍭💖
+                    </div>
+                </div>
+                <div class="surprise-box">
+                    <div class="gift-emoji">🎂</div>
+                    <h3 style="color: #ff1493; font-family: 'Fredoka One', cursive;">
+                        Make a wish and blow out the candles! 🕯️
+                    </h3>
+                </div>
+            `
+        },
+        wishes: {
+            title: "🌙 Starry Wish Garden ⭐",
+            mascot: "🌙",
+            content: `
+                <div class="speech-bubble">
+                    <div class="message-text">
+                        Under this magical starry sky, every star is a wish waiting to come true! ✨
+                        <br><br>
+                        The moon whispers: "Your dreams are written in stardust!" 🌙<br>
+                        The shooting stars promise: "Your wishes will come true!" 💫<br>
+                        The constellation spells: "HAPPY BIRTHDAY BEAUTIFUL!" ⭐<br>
+                        <br>
+                        Close your eyes, make the biggest wish ever! The universe is listening! 🌌💕
+                    </div>
+                </div>
+                <div class="love-meter">
+                    <h3 style="color: #ff1493; margin-bottom: 15px; font-family: 'Fredoka One', cursive;">
+                        ✨ Wish Power Level ✨
+                    </h3>
+                    <div class="meter-bar">
+                        <div class="meter-fill" style="width: 100%;"></div>
+                    </div>
+                    <p style="color: #ff1493; margin-top: 15px; font-weight: 600;">
+                        Your wishes have infinite power! 🌟
+                    </p>
+                </div>
+            `
+        },
+        photos: {
+            title: "📸 Sweet Memories & Wishes 📸",
+            mascot: "📷",
+            content: `
+                <div class="photo-wishes-section">
+                    <h2>📸 Sweet Memories & Wishes 📸</h2>
+                    <div class="photo-gallery">
+                        <img src="https://placekitten.com/200/200" alt="Memory 1" class="wish-photo" onclick="showPhotoWish('Our first trip was magical! Can’t wait for many more adventures with you 💖')"/>
+                        <img src="https://placebear.com/200/200" alt="Memory 2" class="wish-photo" onclick="showPhotoWish('You light up every moment just like this smile! Happy birthday, love! 🎉')"/>
+                        <img src="https://placekitten.com/201/200" alt="Memory 3" class="wish-photo" onclick="showPhotoWish('Each day with you is sweeter than candy! 🍭 Love you tons!')"/>
+                    </div>
+                </div>
+            `
+        },
+        surprise: {
+            title: "🎁 The Ultimate Birthday Surprise! 🎁",
+            mascot: "🎀",
+            content: `
+                <div class="final-message">
+                    <div style="font-family: 'Fredoka One', cursive; font-size: 2rem; margin-bottom: 20px;">
+                        🎉 SURPRISE! 🎉
+                    </div>
+                    <div style="font-size: 1.3rem; line-height: 1.8;">
+                        This entire magical world was created just for YOU by someone who thinks 
+                        you're the most adorable, amazing, and wonderful person in the universe! 💖
+                        <br><br>
+                        Every cute animal, every sweet message, every magical moment - 
+                        all made with love to celebrate your special day! 🌸
+                        <br><br>
+                        You bring so much joy, laughter, and cuteness into this world. 
+                        Today we celebrate the incredible person you are! ✨
+                        <br><br>
+                        <strong>HAPPY BIRTHDAY, MY BEAUTIFUL GIRL! 🎂💕</strong>
+                        <br><br>
+                        Hope this made you smile as much as you make me smile every day! 🥰
+                    </div>
+                </div>
+                <div class="cute-animals">
+                    <div class="animal" onclick="finalCelebration()">🎉</div>
+                    <div class="animal" onclick="finalCelebration()">🎂</div>
+                    <div class="animal" onclick="finalCelebration()">🎈</div>
+                    <div class="animal" onclick="finalCelebration()">🎁</div>
+                    <div class="animal" onclick="finalCelebration()">💖</div>
+                </div>
+            `
+        }
+    };
+
+    function startAdventure(type) {
+        if (!adventures.includes(type)) adventures.push(type);
+        currentStep = adventures.length - 1;
+
+        const content = document.getElementById('content');
+        const story = adventureStories[type];
+
+        const hearts = document.querySelectorAll('.heart');
+        hearts.forEach((heart, index) => {
+            if(index <= currentStep) {
+                heart.classList.add('active');
+            } else {
+                heart.classList.remove('active');
+            }
+        });
+
+        content.style.transform = 'scale(0.8)';
+        content.style.opacity = '0.3';
+
+        setTimeout(() => {
+            content.innerHTML = `
+                <div class="cute-mascot">${story.mascot}</div>
+                <div class="speech-bubble">
+                    <div class="message-text" style="color: #ff1493; font-family: 'Fredoka One', cursive; font-size: 1.5rem;">
+                        ${story.title}
+                    </div>
+                </div>
+                ${story.content}
+                <div class="adventure-buttons">
+                    ${type !== 'surprise' ? `
+                        <button class="kawaii-button" onclick="returnHome()">
+                            🏠 Return to Birthday Home 🏠
+                        </button>
+                        <button class="kawaii-button" onclick="exploreMore()">
+                            🌟 Explore Another Adventure 🌟
+                        </button>
+                    ` : `
+                        <button class="kawaii-button" onclick="restartAdventure()">
+                            🔄 Start New Adventure 🔄
+                        </button>
+                    `}
+                </div>
+                <div class="progress-hearts">
+                    ${Array.from({length: 5}, (_, i) => 
+                        `<div class="heart${i <= currentStep ? ' active' : ''}">${['💖', '💕', '💗', '💝', '💘'][i]}</div>`
+                    ).join('')}
+                </div>
+            `;
+
+            content.style.transform = 'scale(1)';
+            content.style.opacity = '1';
+        }, 300);
+
+        for(let i=0; i<15; i++) {
+            setTimeout(() => createFloatingKawaii(), i*100);
+        }
+    }
+
+    function returnHome() {
+        location.reload();
+    }
+
+    function exploreMore() {
+        const availableAdventures = ['forest', 'party', 'wishes', 'photos', 'surprise'].filter(
+            adv => !adventures.includes(adv)
+        );
+
+        if (availableAdventures.length > 0) {
+            const randomAdventure = availableAdventures[Math.floor(Math.random() * availableAdventures.length)];
+            startAdventure(randomAdventure);
+        } else {
+            startAdventure('surprise');
+        }
+    }
+
+    function restartAdventure() {
+        adventures = [];
+        currentStep = 0;
+        location.reload();
+    }
+
+    function finalCelebration() {
+        for(let i = 0; i < 50; i++) {
+            setTimeout(() => createFloatingKawaii(), i*50);
+        }
+        animalTalk('🎉', "Best birthday surprise ever! You're so loved! 💖✨");
+    }
+
+    function showPhotoWish(message) {
+        const popup = document.createElement('div');
+        popup.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(45deg, #ff99dd, #ffb3e6);
+            color: white;
+            padding: 25px 35px;
+            border-radius: 20px;
+            font-size: 1.2rem;
+            text-align: center;
+            z-index: 10000;
+            border: 3px solid #ff99cc;
+            box-shadow: 0 15px 45px rgba(255, 153, 204, 0.6);
+            font-weight: 600;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            max-width: 300px;
+        `;
+        popup.innerText = message;
+
+        document.body.appendChild(popup);
+
+        setTimeout(() => popup.remove(), 3500);
+    }
+
+    for(let i=0; i<10; i++) {
+        setTimeout(createFloatingKawaii, i*200);
+    }
+</script>
+</body>
+</html>
